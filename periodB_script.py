@@ -51,6 +51,7 @@ def analyze_file(file_path):
     preS = 0
     SR = 0
     max_events = chain.GetEntries()
+    print("Total Events:", max_events)
     for i in range(max_events):
         if chain.LoadTree(i) < 0:
             continue
@@ -101,24 +102,24 @@ def analyze_run(run_number, file_list):
     return run_preS, run_SR
 
 def main():
-    runs_periodA = [
-        "297730", "298595", "298609", "298633", "298687", "298690", "298771", "298773",
-        "298862", "298967", "299055", "299144", "299147", "299184", "299241", "299243",
-        "299278", "299288", "299315", "299340", "299343", "299390", "299584", "300279", "300287"
+    runs_periodB = [
+        "300345", "300415", "300418", "300487", "300540", "300571", "300600", "300655", 
+        "300687", "300784", "300800", "300863", "300908"
     ]
 
     total_preS = 0
     total_SR = 0
 
-    for run in runs_periodA:
+    for run in runs_periodB:
         links = get_root_links(run)
         preS, SR = analyze_run(run, links)
         total_preS += preS
         total_SR += SR
 
-    print("\n=== PeriodA Summary ===")
+    print("\n=== PeriodB Summary ===")
     print(f"Total Preselection: {total_preS}")
     print(f"Total Signal Region: {total_SR}")
 
 if __name__ == "__main__":
     main()
+
